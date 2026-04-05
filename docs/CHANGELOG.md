@@ -13,5 +13,7 @@
 - Wired Download Resume to serve the real file from public/resume.pdf.
 - Fixed initial page-load scroll behavior by forcing top-of-page on first render.
 - Switched About headshot to public asset path for reliable production visibility.
+- Prevented chat widget from auto-scrolling the page on initial load.
+- Added layered API abuse protection with burst limits and chat payload bounds.
 - Added environment template (.env.example) for backend/frontend API configuration.
 - Added Vercel configuration for API routing and SPA serving.

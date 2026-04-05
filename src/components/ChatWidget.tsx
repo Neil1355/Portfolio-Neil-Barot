@@ -51,8 +51,18 @@ const ChatWidget = () => {
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const hasMountedRef = useRef(false);
 
   useEffect(() => {
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      return;
+    }
+
+    if (messages.length === 0 && !typing) {
+      return;
+    }
+
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, typing]);
 

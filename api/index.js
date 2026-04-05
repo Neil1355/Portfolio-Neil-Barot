@@ -5,7 +5,11 @@ import express from "express";
 const app = express();
 
 const MAX_REQUESTS_PER_HOUR = 20;
+const MAX_REQUESTS_PER_MINUTE = 6;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+const BURST_LIMIT_WINDOW_MS = 60 * 1000;
+const MAX_MESSAGE_LENGTH = 1200;
+const MAX_HISTORY_ITEMS = 20;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.0-flash-001";
 const SYSTEM_PROMPT = `You are an AI assistant on Neil Barot's portfolio website. Answer questions about Neil as if you know him well. Here is everything about him:
 
@@ -29,6 +33,7 @@ LINKS: github.com/Neil1355 | linkedin.com/in/neilbarot5 | neil.barot.jobspace@gm
 Keep answers concise, friendly, and factual. Don't make up information not listed above. If asked something you don't know, say so honestly.`;
 
 const rateLimitStore = new Map();
+const burstLimitStore = new Map();
 
 app.use(
   cors({
@@ -56,6 +61,17 @@ function applyRateLimit(req, res, next) {
   const ip = getClientIp(req);
   const now = Date.now();
   const existing = rateLimitStore.get(ip);
+  const burstExisting = burstLimitStore.get(ip);
+
+  if (!burstExisting || now - burstExisting.windowStart >= BURST_LIMIT_WINDOW_MS) {
+    burstLimitStore.set(ip, { windowStart: now, count: 1 });
+  } else if (burstExisting.count >= MAX_REQUESTS_PER_MINUTE) {
+    res.setHeader("Retry-After", "60");
+    return res.status(429).json({ error: "Too many requests. Please slow down and try again." });
+  } else {
+    burstExisting.count += 1;
+    burstLimitStore.set(ip, burstExisting);
+  }
 
   if (!existing || now - existing.windowStart >= RATE_LIMIT_WINDOW_MS) {
     rateLimitStore.set(ip, { windowStart: now, count: 1 });
@@ -63,6 +79,7 @@ function applyRateLimit(req, res, next) {
   }
 
   if (existing.count >= MAX_REQUESTS_PER_HOUR) {
+    res.setHeader("Retry-After", "3600");
     return res.status(429).json({ error: "Rate limit exceeded. Please try again later." });
   }
 
@@ -80,13 +97,15 @@ function normalizeHistory(history) {
   }
 
   return history
+    .slice(-MAX_HISTORY_ITEMS)
     .filter(
       (item) =>
         item &&
         typeof item === "object" &&
         typeof item.role === "string" &&
         typeof item.content === "string" &&
-        item.content.trim().length > 0,
+        item.content.trim().length > 0 &&
+        item.content.trim().length <= MAX_MESSAGE_LENGTH,
     )
     .map((item) => ({
       role: item.role === "assistant" || item.role === "bot" ? "model" : "user",
@@ -149,6 +168,10 @@ app.post("/api/chat", applyRateLimit, async (req, res) => {
   const { message, history } = req.body ?? {};
   if (typeof message !== "string" || message.trim().length === 0) {
     return res.status(400).json({ error: "message must be a non-empty string." });
+  }
+
+  if (message.trim().length > MAX_MESSAGE_LENGTH) {
+    return res.status(400).json({ error: `message exceeds ${MAX_MESSAGE_LENGTH} characters.` });
   }
 
   if (!apiKey) {
