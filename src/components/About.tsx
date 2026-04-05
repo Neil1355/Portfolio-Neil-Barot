@@ -46,13 +46,13 @@ const About = () => {
             className="space-y-5 text-muted-foreground leading-relaxed"
           >
             <p>
-              I work at Dunkin'. I also built a full-stack ML forecasting platform for Dunkin'. That's basically my whole personality — I see a system, I want to fix it, and I don't wait for someone to assign me a ticket.
+              I work at Dunkin'. I also built a full-stack ML forecasting platform for Dunkin'. That's basically my whole personality, I see a system, I want to fix it, and I don't wait for someone to assign me a ticket.
             </p>
             <p>
-              I'm a junior at Rutgers studying Computer Science with a minor in Cognitive Science. That combination isn't accidental. I care about how people think and how systems fail — and I build tools that sit at that intersection. From demand forecasting engines to attention detection AI, everything I build touches real human behavior.
+              I'm a junior at Rutgers studying Computer Science with a minor in Cognitive Science. That combination isn't accidental. I care about how people think and how systems fail, and I build tools that sit at that intersection. From demand forecasting engines to attention detection AI, everything I build touches real human behavior.
             </p>
             <p>
-              I'm actively looking for Summer 2026 internships in SWE or ML. I work across the full stack — React, Flask, PostgreSQL, scikit-learn, OpenCV — and I don't stop at 'it works locally.' I deploy it, monitor it, and make it better.            </p>
+              I'm actively looking for Summer 2026 internships in SWE or ML. I work across the full stack, React, Flask, PostgreSQL, scikit-learn, and OpenCV, and I don't stop at 'it works locally.' I deploy it, monitor it, and make it better.            </p>
           </motion.div>
         </div>
 

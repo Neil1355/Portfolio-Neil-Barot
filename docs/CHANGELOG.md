@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-04-05
+- Replaced em dashes in site copy and metadata with plain punctuation for consistency.
 - Added Resume Tailor Pro to portfolio projects with live demo and GitHub links.
 - Reordered projects so Resume Tailor Pro appears higher in the project grid.
 - Updated Resume Tailor Pro card to featured layout width for stronger visual emphasis.

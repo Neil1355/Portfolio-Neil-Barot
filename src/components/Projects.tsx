@@ -20,7 +20,7 @@ const projects: Project[] = [
     badgeColor: "bg-primary/15 text-primary",
     featured: true,
     problem:
-      "Full-stack ML forecasting platform built for real Dunkin' operations — predicts demand, adjusts for context, and learns over time.",
+      "Full-stack ML forecasting platform built for real Dunkin' operations, predicts demand, adjusts for context, and learns over time.",
     tech: ["Python", "Flask", "PostgreSQL", "React", "TypeScript", "scikit-learn", "JWT", "Vite"],
     metrics: [
       "95%+ forecast accuracy across 1,000+ daily data points",
@@ -61,7 +61,7 @@ const projects: Project[] = [
     badge: "Completed",
     badgeColor: "bg-secondary text-secondary-foreground",
     problem:
-      "Desktop tutoring management system for 30+ students and tutors — automates scheduling, feedback, and progress reporting.",
+      "Desktop tutoring management system for 30+ students and tutors, automates scheduling, feedback, and progress reporting.",
     tech: ["Python", "Tkinter", "MySQL"],
     metrics: [
       "~40% reduction in manual tracking time",

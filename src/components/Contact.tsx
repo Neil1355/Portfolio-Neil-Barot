@@ -60,7 +60,7 @@ const Contact = () => {
             Let's Talk
           </h2>
           <p className="text-muted-foreground mb-10">
-            Actively looking for Summer 2026 opportunities. If you're hiring — or just want to connect — reach out.
+            Actively looking for Summer 2026 opportunities. If you're hiring, or just want to connect, reach out.
           </p>
         </motion.div>
 

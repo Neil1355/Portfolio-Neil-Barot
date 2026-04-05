@@ -110,7 +110,7 @@ const ChatWidget = () => {
             Ask Me Anything
           </h2>
           <p className="text-muted-foreground">
-            A chatbot trained on everything about me — my projects, skills, and background. Ask it anything a recruiter might want to know.
+            A chatbot trained on everything about me, my projects, skills, and background. Ask it anything a recruiter might want to know.
           </p>
         </motion.div>
 
