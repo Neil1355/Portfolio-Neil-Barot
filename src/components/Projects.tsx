@@ -54,7 +54,7 @@ const projects: Project[] = [
     problem:
       "Computer vision tool that detects when a user has zoned out while studying and triggers a re-engagement alert.",
     tech: ["Python", "OpenCV", "MediaPipe", "ML", "React"],
-    github: "#", // TODO: Replace with actual FocusSight AI repo URL once available
+    github: "https://github.com/Neil1355/FocusSight-AI", // TODO: Replace with actual FocusSight AI repo URL once available
   },
   {
     title: "ProMetric",
