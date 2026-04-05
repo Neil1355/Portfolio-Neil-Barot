@@ -3,6 +3,8 @@
 ## 2026-04-05
 - Updated README with complete setup, scripts, API contract, and deployment instructions.
 - Removed redundant root-level media files now duplicated in `public/`.
+- Added CORS origin allowlist support for production API hardening.
+- Added `/api/health` endpoint for monitoring and deployment checks.
 
 ## 2026-04-04
 - Added backend chat API at /api/chat.

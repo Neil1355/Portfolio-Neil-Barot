@@ -11,6 +11,10 @@ const BURST_LIMIT_WINDOW_MS = 60 * 1000;
 const MAX_MESSAGE_LENGTH = 1200;
 const MAX_HISTORY_ITEMS = 20;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.0-flash-001";
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || "")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 const SYSTEM_PROMPT = `You are an AI assistant on Neil Barot's portfolio website. Answer questions about Neil as if you know him well. Here is everything about him:
 
 Neil Barot is a junior at Rutgers University studying Computer Science with a minor in Cognitive Science (Class of 2027). He lives in New Brunswick, NJ and works part-time as a barista at Dunkin'. He is actively seeking Summer 2026 SWE or ML internships.
@@ -35,12 +39,45 @@ Keep answers concise, friendly, and factual. Don't make up information not liste
 const rateLimitStore = new Map();
 const burstLimitStore = new Map();
 
+/**
+ * Returns the allowed web origins for CORS based on env or safe defaults.
+ */
+function getAllowedOrigins() {
+  if (ALLOWED_ORIGINS.length > 0) {
+    return ALLOWED_ORIGINS;
+  }
+
+  return [
+    "https://neilbarot.dev",
+    "https://www.neilbarot.dev",
+    "http://localhost:8080",
+    "http://127.0.0.1:8080",
+  ];
+}
+
+const allowedOrigins = getAllowedOrigins();
+
 app.use(
   cors({
-    origin: true,
+    origin: (origin, callback) => {
+      // Allow server-to-server calls and local tooling that doesn't send Origin.
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
   }),
 );
 app.use(express.json({ limit: "1mb" }));
+
+app.get("/api/health", (_req, res) => {
+  res.json({ status: "ok" });
+});
 
 /**
  * Gets a stable client IP address from request headers or socket info.

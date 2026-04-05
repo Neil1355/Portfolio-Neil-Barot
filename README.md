@@ -33,12 +33,14 @@ Create `.env` in the project root:
 ```dotenv
 GEMINI_API_KEY=your_key_here
 GEMINI_MODEL=gemini-2.0-flash-001
+ALLOWED_ORIGINS=https://neilbarot.dev,https://www.neilbarot.dev,http://localhost:8080
 VITE_API_URL=http://localhost:3001
 ```
 
 Notes:
 
 - `GEMINI_MODEL` is optional (default is `gemini-2.0-flash-001`).
+- `ALLOWED_ORIGINS` is optional; when omitted, safe defaults are used.
 - Keep secrets in `.env` only. Never commit real keys.
 
 ### 3. Run frontend and backend
@@ -91,7 +93,18 @@ Protections in place:
 - Per-IP hourly limit
 - Per-IP burst limit
 - Message length + history size bounds
+- Origin allowlist (CORS) for trusted frontend domains
 - Graceful fallback response when provider is unavailable
+
+### GET `/api/health`
+
+Response:
+
+```json
+{
+	"status": "ok"
+}
+```
 
 ## Deploying to Vercel
 
@@ -108,3 +121,10 @@ Protections in place:
 - Headshot is served from `/public/headshot.jpeg`.
 - Resume is served from `/public/resume.pdf`.
 - Change log is tracked in `docs/CHANGELOG.md`.
+
+## Troubleshooting Deploy
+
+- If chat fails in production, confirm `GEMINI_API_KEY` is set in Vercel Project Settings.
+- If requests are blocked by CORS, ensure your production domain is included in `ALLOWED_ORIGINS`.
+- If your frontend points to localhost in production, remove `VITE_API_URL` from production env and rely on same-origin `/api` routing.
+- Use `/api/health` to quickly check whether the API function is alive.
