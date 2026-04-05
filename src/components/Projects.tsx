@@ -39,6 +39,21 @@ const projects: Project[] = [
     github: "#", // TODO: Replace with actual FocusSight AI repo URL once available
   },
   {
+    title: "Resume Tailor Pro",
+    badge: "Live",
+    badgeColor: "bg-primary/15 text-primary",
+    problem:
+      "Full-stack AI resume tailoring app that rewrites bullet points against a job description while preserving strict DOCX/PDF layout fidelity.",
+    tech: ["React", "TypeScript", "Vite", "FastAPI", "Python", "Gemini", "docxtpl", "Docker"],
+    metrics: [
+      "End-to-end workflow: analyze JD, tailor bullets, preview changes, export documents",
+      "Layout-safe generation via placeholder-based DOCX templating",
+      "Security hardening: endpoint rate limiting, CORS controls, and dependency audits",
+    ],
+    github: "https://github.com/Neil1355/resume-tailor-pro",
+    demo: "https://resume-tailor-pro-lilac.vercel.app/",
+  },
+  {
     title: "ProMetric",
     badge: "Completed",
     badgeColor: "bg-secondary text-secondary-foreground",
