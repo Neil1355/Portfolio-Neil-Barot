@@ -5,6 +5,7 @@ interface Project {
   title: string;
   badge: string;
   badgeColor: string;
+  featured?: boolean;
   problem: string;
   tech: string[];
   metrics?: string[];
@@ -17,6 +18,7 @@ const projects: Project[] = [
     title: "Dunkin Demand Intelligence",
     badge: "Featured Project",
     badgeColor: "bg-primary/15 text-primary",
+    featured: true,
     problem:
       "Full-stack ML forecasting platform built for real Dunkin' operations — predicts demand, adjusts for context, and learns over time.",
     tech: ["Python", "Flask", "PostgreSQL", "React", "TypeScript", "scikit-learn", "JWT", "Vite"],
@@ -33,6 +35,7 @@ const projects: Project[] = [
     title: "Resume Tailor Pro",
     badge: "Live",
     badgeColor: "bg-primary/15 text-primary",
+    featured: true,
     problem:
       "Full-stack AI resume tailoring app that rewrites bullet points against a job description while preserving strict DOCX/PDF layout fidelity.",
     tech: ["React", "TypeScript", "Vite", "FastAPI", "Python", "Gemini", "docxtpl", "Docker"],
@@ -79,9 +82,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.15 }}
-      className={`bg-card border border-border rounded-lg p-6 hover:border-primary/40 transition-colors ${
-        index === 0 ? "md:col-span-2" : ""
-      }`}
+      className={`bg-card border border-border rounded-lg p-6 hover:border-primary/40 transition-colors ${project.featured ? "md:col-span-2" : ""}`}
     >
       <div className="flex items-center gap-3 mb-3">
         <h3 className="font-heading text-lg font-bold text-foreground">{project.title}</h3>
