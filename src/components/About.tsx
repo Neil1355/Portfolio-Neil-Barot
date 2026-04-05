@@ -52,8 +52,7 @@ const About = () => {
               I'm a junior at Rutgers studying Computer Science with a minor in Cognitive Science. That combination isn't accidental. I care about how people think and how systems fail — and I build tools that sit at that intersection. From demand forecasting engines to attention detection AI, everything I build touches real human behavior.
             </p>
             <p>
-              I'm actively looking for Summer 2026 internships in SWE or ML. I bring full-stack range (React, Flask, PostgreSQL), ML experience (scikit-learn, OpenCV, NLP), and the ability to ship end-to-end — from architecture to deployment.
-            </p>
+              I'm actively looking for Summer 2026 internships in SWE or ML. I work across the full stack — React, Flask, PostgreSQL, scikit-learn, OpenCV — and I don't stop at 'it works locally.' I deploy it, monitor it, and make it better.            </p>
           </motion.div>
         </div>
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-04-05
+- Updated README with complete setup, scripts, API contract, and deployment instructions.
+- Removed redundant root-level media files now duplicated in `public/`.
+
 ## 2026-04-04
 - Added backend chat API at /api/chat.
 - Configured chat provider as Google Gemini (gemini-2.0-flash-001 by default).
