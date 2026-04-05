@@ -26,6 +26,8 @@ Personal portfolio website for Neil Barot (Rutgers CS, Class of 2027), built wit
 npm install
 ```
 
+This project uses npm as the canonical package manager.
+
 ### 2. Configure environment
 
 Create `.env` in the project root:
@@ -121,6 +123,7 @@ Response:
 - Headshot is served from `/public/headshot.jpeg`.
 - Resume is served from `/public/resume.pdf`.
 - Change log is tracked in `docs/CHANGELOG.md`.
+- Dependency baseline currently reports 0 known vulnerabilities via `npm audit`.
 
 ## Troubleshooting Deploy
 

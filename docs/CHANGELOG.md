@@ -5,6 +5,8 @@
 - Removed redundant root-level media files now duplicated in `public/`.
 - Added CORS origin allowlist support for production API hardening.
 - Added `/api/health` endpoint for monitoring and deployment checks.
+- Upgraded dependencies to resolve all reported npm audit vulnerabilities.
+- Removed obsolete Bun lock files and standardized package management on npm.
 
 ## 2026-04-04
 - Added backend chat API at /api/chat.
