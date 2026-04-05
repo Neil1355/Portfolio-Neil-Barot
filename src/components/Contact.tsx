@@ -1,15 +1,50 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import { toast } from "@/hooks/use-toast";
+
+const EMAIL_ADDRESS = "neil.barot.jobspace@gmail.com";
+
+/**
+ * Copies text to the clipboard using the modern API with an older-browser fallback.
+ */
+const copyTextToClipboard = async (text: string): Promise<void> => {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+
+  const tempTextArea = document.createElement("textarea");
+  tempTextArea.value = text;
+  tempTextArea.setAttribute("readonly", "");
+  tempTextArea.style.position = "absolute";
+  tempTextArea.style.left = "-9999px";
+  document.body.appendChild(tempTextArea);
+  tempTextArea.select();
+
+  const copied = document.execCommand("copy");
+  document.body.removeChild(tempTextArea);
+  if (!copied) {
+    throw new Error("Clipboard copy failed");
+  }
+};
 
 const Contact = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [copied, setCopied] = useState(false);
 
+  /**
+   * Copies Neil's email address and shows user feedback.
+   */
   const copyEmail = async () => {
-    await navigator.clipboard.writeText("neil.barot.jobspace@gmail.com");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await copyTextToClipboard(EMAIL_ADDRESS);
+      setCopied(true);
+      toast({ title: "Copied!", description: "Email address copied to clipboard." });
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast({ title: "Copy failed", description: "Please copy the email address manually." });
+    }
   };
 
   return (
@@ -41,7 +76,7 @@ const Contact = () => {
           >
             <div className="text-sm font-medium text-foreground mb-1">Email</div>
             <div className="text-xs text-muted-foreground group-hover:text-primary transition-colors">
-              {copied ? "Copied!" : "neil.barot.jobspace@gmail.com"}
+              {copied ? "Copied!" : EMAIL_ADDRESS}
             </div>
           </button>
 
@@ -71,9 +106,10 @@ const Contact = () => {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.3 }}
         >
-          {/* TODO: Replace href="#" with path to actual PDF resume */}
+          {/* TODO: Replace /resume.pdf placeholder with Neil's final resume PDF file. */}
           <a
-            href="#"
+            href="/resume.pdf"
+            download
             className="inline-block px-8 py-3 bg-primary text-primary-foreground font-medium rounded-md hover:opacity-90 transition-opacity"
           >
             Download Resume

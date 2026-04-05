@@ -6,6 +6,11 @@ interface Message {
   content: string;
 }
 
+interface ChatHistoryItem {
+  role: string;
+  content: string;
+}
+
 const suggestedPrompts = [
   "What projects has Neil built?",
   "What's Neil's tech stack?",
@@ -14,15 +19,29 @@ const suggestedPrompts = [
   "What's Neil's background?",
 ];
 
-// TODO: Wire to backend chat endpoint
-// POST /api/chat
-// Body: { message: string, history: { role: string, content: string }[] }
-// Response: { reply: string }
-// Replace the placeholder response below with the actual API call
-const sendMessage = async (_message: string): Promise<string> => {
-  // PLACEHOLDER — remove when backend is connected
-  await new Promise((r) => setTimeout(r, 1500));
-  return "This is a placeholder response. Wire up the Claude API in the backend.";
+/**
+ * Sends a chat message and prior chat history to the backend chat API.
+ */
+const sendMessage = async (message: string, history: ChatHistoryItem[]): Promise<string> => {
+  const apiBaseUrl = (import.meta.env.VITE_API_URL ?? "").trim();
+  const response = await fetch(`${apiBaseUrl}/api/chat`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ message, history }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Chat request failed with status ${response.status}`);
+  }
+
+  const data: { reply?: string } = await response.json();
+  if (!data.reply) {
+    throw new Error("Chat response did not include a reply");
+  }
+
+  return data.reply;
 };
 
 const ChatWidget = () => {
@@ -39,15 +58,32 @@ const ChatWidget = () => {
 
   const handleSend = async (text?: string) => {
     const msg = (text || input).trim();
-    if (!msg) return;
+    if (!msg || typing) return;
     setInput("");
+
+    const history: ChatHistoryItem[] = messages.map((message) => ({
+      role: message.role === "bot" ? "assistant" : message.role,
+      content: message.content,
+    }));
 
     setMessages((prev) => [...prev, { role: "user", content: msg }]);
     setTyping(true);
 
-    const reply = await sendMessage(msg);
-    setTyping(false);
-    setMessages((prev) => [...prev, { role: "bot", content: reply }]);
+    try {
+      const reply = await sendMessage(msg, history);
+      setMessages((prev) => [...prev, { role: "bot", content: reply }]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "bot",
+          content:
+            "Sorry, I ran into an issue reaching the assistant. Please try again in a moment.",
+        },
+      ]);
+    } finally {
+      setTyping(false);
+    }
   };
 
   return (
@@ -142,7 +178,7 @@ const ChatWidget = () => {
             />
             <button
               onClick={() => handleSend()}
-              disabled={!input.trim()}
+              disabled={!input.trim() || typing}
               className="px-4 py-2 bg-primary text-primary-foreground text-sm rounded-md hover:opacity-90 disabled:opacity-40 transition-opacity"
               aria-label="Send message"
             >

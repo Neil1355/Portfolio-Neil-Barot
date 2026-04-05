@@ -24,16 +24,18 @@ const About = () => {
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Photo placeholder */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="aspect-square max-w-sm mx-auto md:mx-0 rounded-xl bg-card border border-border flex items-center justify-center relative overflow-hidden"
           >
-            {/* TODO: Replace src with actual photo path */}
+            <img
+              src="/headshot.jpeg"
+              alt="Neil Barot headshot"
+              className="h-full w-full object-cover"
+            />
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
-            <span className="font-heading text-6xl text-primary/30">NB</span>
             <div className="absolute inset-0 rounded-xl ring-1 ring-primary/20" />
           </motion.div>
 
