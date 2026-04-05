@@ -2,6 +2,9 @@
 
 ## 2026-04-05
 - Added Resume Tailor Pro to portfolio projects with live demo and GitHub links.
+- Reordered projects so Resume Tailor Pro appears higher in the project grid.
+- Updated skills to include FastAPI, docxtpl, Docker, and additional security-focused capabilities.
+- Updated About section stat to reflect 5 total projects built.
 - Updated README with complete setup, scripts, API contract, and deployment instructions.
 - Removed redundant root-level media files now duplicated in `public/`.
 - Added CORS origin allowlist support for production API hardening.

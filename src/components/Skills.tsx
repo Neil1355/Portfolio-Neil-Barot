@@ -8,15 +8,35 @@ const groups = [
   },
   {
     label: "Frameworks & Libraries",
-    items: ["Flask", "React", "scikit-learn", "NLTK", "spaCy", "Hugging Face Transformers", "Tkinter", "Vite"],
+    items: [
+      "Flask",
+      "FastAPI",
+      "React",
+      "scikit-learn",
+      "NLTK",
+      "spaCy",
+      "Hugging Face Transformers",
+      "Tkinter",
+      "Vite",
+      "docxtpl",
+    ],
   },
   {
     label: "Databases & Tools",
-    items: ["PostgreSQL", "MySQL", "Git/GitHub", "VS Code", "Google Cloud", "Vercel"],
+    items: ["PostgreSQL", "MySQL", "Git/GitHub", "VS Code", "Docker", "Google Cloud", "Vercel"],
   },
   {
     label: "Backend & Security",
-    items: ["JWT Auth", "bcrypt", "REST APIs", "Connection Pooling", "Rate Limiting", "Database Optimization"],
+    items: [
+      "JWT Auth",
+      "bcrypt",
+      "REST APIs",
+      "Connection Pooling",
+      "Rate Limiting",
+      "CORS Hardening",
+      "Prompt Safety Controls",
+      "Database Optimization",
+    ],
   },
 ];
 

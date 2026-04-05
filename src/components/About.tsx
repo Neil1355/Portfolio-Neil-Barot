@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 const stats = [
-  { label: "Projects Built", value: "4" },
+  { label: "Projects Built", value: "5" },
   { label: "CS @ Rutgers", value: "'27" },
   { label: "Open to", value: "Internships" },
 ];

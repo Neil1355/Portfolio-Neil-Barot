@@ -30,15 +30,6 @@ const projects: Project[] = [
     demo: "https://dunkin-demand-intelligence-neil-barots-projects-55b3b305.vercel.app",
   },
   {
-    title: "FocusSight AI",
-    badge: "In Development",
-    badgeColor: "bg-secondary text-secondary-foreground",
-    problem:
-      "Computer vision tool that detects when a user has zoned out while studying and triggers a re-engagement alert.",
-    tech: ["Python", "OpenCV", "MediaPipe", "ML", "React"],
-    github: "#", // TODO: Replace with actual FocusSight AI repo URL once available
-  },
-  {
     title: "Resume Tailor Pro",
     badge: "Live",
     badgeColor: "bg-primary/15 text-primary",
@@ -52,6 +43,15 @@ const projects: Project[] = [
     ],
     github: "https://github.com/Neil1355/resume-tailor-pro",
     demo: "https://resume-tailor-pro-lilac.vercel.app/",
+  },
+  {
+    title: "FocusSight AI",
+    badge: "In Development",
+    badgeColor: "bg-secondary text-secondary-foreground",
+    problem:
+      "Computer vision tool that detects when a user has zoned out while studying and triggers a re-engagement alert.",
+    tech: ["Python", "OpenCV", "MediaPipe", "ML", "React"],
+    github: "#", // TODO: Replace with actual FocusSight AI repo URL once available
   },
   {
     title: "ProMetric",
