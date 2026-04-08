@@ -44,9 +44,9 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          {/* TODO: Replace href="#" with path to actual PDF resume */}
           <a
-            href="#"
+            href="/resume.pdf"
+            download
             className="text-sm border border-primary text-primary px-4 py-1.5 rounded-md hover:bg-primary hover:text-primary-foreground transition-colors"
           >
             Download Resume
@@ -87,7 +87,8 @@ const Navbar = () => {
             </a>
           ))}
           <a
-            href="#"
+            href="/resume.pdf"
+            download
             className="inline-block mt-2 text-sm border border-primary text-primary px-4 py-1.5 rounded-md"
           >
             Download Resume

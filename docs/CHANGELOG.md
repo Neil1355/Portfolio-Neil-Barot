@@ -3,6 +3,7 @@
 ## 2026-04-08
 - Replaced public resume asset with updated original PDF used by the Download Resume button.
 - Updated Projects section content and card details.
+- Fixed navbar desktop and mobile Download Resume buttons to point to /resume.pdf instead of #.
 
 ## 2026-04-05
 - Added Resume Tailor Pro to portfolio projects with live demo and GitHub links.
