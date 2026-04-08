@@ -11,6 +11,8 @@ interface Project {
   metrics?: string[];
   github: string;
   demo?: string;
+  demoLabel?: string;
+  download?: string;
 }
 
 const projects: Project[] = [
@@ -69,6 +71,9 @@ const projects: Project[] = [
       "Multi-role dashboards: student, tutor, manager",
     ],
     github: "https://github.com/Neil1355/Prometric",
+    demo: "https://github.com/Neil1355/Prometric/releases/tag/v1.0.0",
+    demoLabel: "Live Demo",
+    download: "https://github.com/Neil1355/Prometric/releases/download/v1.0.0/ProMetric-windows-x64.zip",
   },
 ];
 
@@ -121,14 +126,23 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           GitHub →
         </a>
         {project.demo && (
-          // TODO: Replace live demo href with production URL once custom domain is set
           <a
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-primary hover:underline"
           >
-            Live Demo →
+            {project.demoLabel || "Live Demo"} →
+          </a>
+        )}
+        {project.download && (
+          <a
+            href={project.download}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-primary hover:underline"
+          >
+            Download App →
           </a>
         )}
       </div>
