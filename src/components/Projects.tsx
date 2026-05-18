@@ -18,8 +18,9 @@ interface Project {
 const projects: Project[] = [
   {
     title: "FocusSight AI",
-    badge: "Completed",
+    badge: "Featured Project",
     badgeColor: "bg-primary/15 text-primary",
+    featured: true,
     problem:
       "Computer vision system that detects student disengagement during study sessions and triggers re-engagement prompts and session analytics.",
     tech: ["Python", "OpenCV", "MediaPipe", "TensorFlow Lite", "React"],
@@ -63,15 +64,7 @@ const projects: Project[] = [
     github: "https://github.com/Neil1355/resume-tailor-pro",
     demo: "https://resume-tailor-pro-lilac.vercel.app/",
   },
-  {
-    title: "FocusSight AI",
-    badge: "In Development",
-    badgeColor: "bg-secondary text-secondary-foreground",
-    problem:
-      "Computer vision tool that detects when a user has zoned out while studying and triggers a re-engagement alert.",
-    tech: ["Python", "OpenCV", "MediaPipe", "ML", "React"],
-    github: "https://github.com/Neil1355/FocusSight-AI", // TODO: Replace with actual FocusSight AI repo URL once available
-  },
+
   {
     title: "ProMetric",
     badge: "Completed",
