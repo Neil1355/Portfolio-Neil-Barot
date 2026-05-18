@@ -94,11 +94,13 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.15 }}
-      className={`bg-card border border-border rounded-lg p-6 hover:border-primary/40 transition-colors ${project.featured ? "md:col-span-2" : ""}`}
+      className={`bg-card border border-border rounded-lg p-5 hover:border-primary/40 transition-colors ${project.featured ? "md:col-span-2" : ""}`}
     >
       <div className="flex items-center gap-3 mb-3">
-        <h3 className="font-heading text-lg font-bold text-foreground">{project.title}</h3>
-        <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${project.badgeColor}`}>
+        <h3 className={`font-heading font-bold text-foreground ${project.featured ? 'text-xl md:text-2xl' : 'text-lg'}`}>
+          {project.title}
+        </h3>
+        <span className={`text-sm px-3 py-0.5 rounded-full font-medium ${project.badgeColor}`}>
           {project.badge}
         </span>
       </div>
@@ -107,7 +109,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
       <div className="flex flex-wrap gap-2 mb-4">
         {project.tech.map((t) => (
-          <span key={t} className="text-xs px-2 py-1 rounded bg-secondary text-secondary-foreground">
+          <span key={t} className="text-xs px-1 py-0.5 rounded bg-secondary text-secondary-foreground">
             {t}
           </span>
         ))}
@@ -117,7 +119,11 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
         <ul className="text-sm text-muted-foreground mb-4 space-y-1">
           {project.metrics.map((m) => (
             <li key={m} className="flex items-start gap-2">
-              <span className="text-primary mt-1">▸</span> {m}
+              <span className="text-primary mt-1">▸</span>
+              <span
+                className="leading-tight"
+                dangerouslySetInnerHTML={{ __html: m.replace(/^([^\s]+)/, '<strong>$1</strong>') }}
+              />
             </li>
           ))}
         </ul>
