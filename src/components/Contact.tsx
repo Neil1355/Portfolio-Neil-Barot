@@ -106,7 +106,6 @@ const Contact = () => {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.3 }}
         >
-          {/* TODO: Replace /resume.pdf placeholder with Neil's final resume PDF file. */}
           <a
             href="/resume.pdf"
             download
