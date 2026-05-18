@@ -17,6 +17,20 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "FocusSight AI",
+    badge: "Completed",
+    badgeColor: "bg-primary/15 text-primary",
+    problem:
+      "Computer vision system that detects student disengagement during study sessions and triggers re-engagement prompts and session analytics.",
+    tech: ["Python", "OpenCV", "MediaPipe", "TensorFlow Lite", "React"],
+    metrics: [
+      "Real-time inference at 25-30 FPS on common laptops",
+      "Prototype detection precision ~92% on internal test set",
+      "Lightweight on-device model (under 8MB) for privacy-preserving inference",
+    ],
+    github: "https://github.com/Neil1355/FocusSight-AI",
+  },
+  {
     title: "Dunkin Demand Intelligence",
     badge: "Featured Project",
     badgeColor: "bg-primary/15 text-primary",
