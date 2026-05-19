@@ -44,13 +44,23 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <a
-            href="/resume.pdf"
-            download
-            className="text-sm border border-primary text-primary px-4 py-1.5 rounded-md hover:bg-primary hover:text-primary-foreground transition-colors"
-          >
-            Download Resume
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm border border-border text-muted-foreground px-3 py-1.5 rounded-md hover:bg-muted transition-colors"
+            >
+              View Resume
+            </a>
+            <a
+              href="/resume.pdf"
+              download
+              className="text-sm border border-primary text-primary px-4 py-1.5 rounded-md hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
+              Download Resume
+            </a>
+          </div>
         </div>
 
         {/* Mobile toggle */}
@@ -86,13 +96,23 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-          <a
-            href="/resume.pdf"
-            download
-            className="inline-block mt-2 text-sm border border-primary text-primary px-4 py-1.5 rounded-md"
-          >
-            Download Resume
-          </a>
+          <div className="mt-2 flex gap-2">
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-sm border border-border text-muted-foreground px-3 py-1.5 rounded-md"
+            >
+              View Resume
+            </a>
+            <a
+              href="/resume.pdf"
+              download
+              className="inline-block text-sm border border-primary text-primary px-4 py-1.5 rounded-md"
+            >
+              Download Resume
+            </a>
+          </div>
         </motion.div>
       )}
     </motion.nav>

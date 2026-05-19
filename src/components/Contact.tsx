@@ -106,13 +106,24 @@ const Contact = () => {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.3 }}
         >
-          <a
-            href="/resume.pdf"
-            download
-            className="inline-block px-8 py-3 bg-primary text-primary-foreground font-medium rounded-md hover:opacity-90 transition-opacity"
-          >
-            Download Resume
-          </a>
+          <div className="flex justify-center gap-3">
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-3 border border-border text-sm rounded-md text-foreground hover:bg-muted transition-colors"
+            >
+              View Resume
+            </a>
+
+            <a
+              href="/resume.pdf"
+              download
+              className="inline-block px-8 py-3 bg-primary text-primary-foreground font-medium rounded-md hover:opacity-90 transition-opacity"
+            >
+              Download Resume
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>
